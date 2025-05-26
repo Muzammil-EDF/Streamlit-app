@@ -2,5 +2,4 @@ openpyxl
 pandas
 gspread
 streamlit
-oauth2client
 streamlit_gsheets
