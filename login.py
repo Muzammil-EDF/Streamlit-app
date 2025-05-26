@@ -162,23 +162,19 @@ def user1_page():
 
         except Exception as e:
             st.error(f"Error reading operations file: {e}")
-
 def user2_page():
     st.title("📘 Master Machine List")
 
     try:
-        # df_master = pd.read_csv(GOOGLE_SHEET_URL)
-        # Convert Google Sheet link to CSV export link
+        # Load the Google Sheet CSV export URL
         csv_url = "https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/export?format=csv"
         df_master = pd.read_csv(csv_url)
 
-
-        st.markdown("#### 🔍 Search Filters")
-        search_values = {}
-        cols = st.columns(len(df_master.columns))
-
-        for i, col in enumerate(df_master.columns):
-            search_values[col] = cols[i].text_input(f"Search in '{col}'")
+        # Sidebar filters (scrollable, vertical)
+        with st.expander("🔍 Filter Machine List", expanded=True):
+            search_values = {}
+            for col in df_master.columns:
+                search_values[col] = st.text_input(f"Search in '{col}'")
 
         # Apply search filters
         filtered_df = df_master.copy()
@@ -186,14 +182,43 @@ def user2_page():
             if val:
                 filtered_df = filtered_df[filtered_df[col].astype(str).str.contains(val, case=False, na=False)]
 
-        # st.markdown("### 📋 Filtered Machine List")
-        st.dataframe(filtered_df)
+        # Display the filtered table
+        st.markdown("### 📋 Filtered Machine List")
+        st.dataframe(filtered_df, use_container_width=True)
 
     except Exception as e:
         st.error(f"Error loading machine list from Google Sheet: {e}")
 
 
-    
+# def user2_page():
+#     st.title("📘 Master Machine List")
+
+#     try:
+#         # df_master = pd.read_csv(GOOGLE_SHEET_URL)
+#         # Convert Google Sheet link to CSV export link
+#         csv_url = "https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/export?format=csv"
+#         df_master = pd.read_csv(csv_url)
+
+
+#         st.markdown("#### 🔍 Search Filters")
+#         search_values = {}
+#         cols = st.columns(len(df_master.columns))
+
+#         for i, col in enumerate(df_master.columns):
+#             search_values[col] = cols[i].text_input(f"Search in '{col}'")
+
+#         # Apply search filters
+#         filtered_df = df_master.copy()
+#         for col, val in search_values.items():
+#             if val:
+#                 filtered_df = filtered_df[filtered_df[col].astype(str).str.contains(val, case=False, na=False)]
+
+#         # st.markdown("### 📋 Filtered Machine List")
+#         st.dataframe(filtered_df)
+
+#     except Exception as e:
+#         st.error(f"Error loading machine list from Google Sheet: {e}")
+
 # ----------------------------
 # MAIN PAGE SWITCHER
 # ----------------------------
