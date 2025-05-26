@@ -166,7 +166,7 @@ def user1_page():
 
 def user2_page():
     st.title("User 2 Portal")
-    st.write("Welcomeeeeeeeeeeeeeeeeee")
+    st.write("Welco")
     st.selectbox("Select department:", ["HR", "Engineering", "Sales"])
     st.date_input("Choose date")
 
