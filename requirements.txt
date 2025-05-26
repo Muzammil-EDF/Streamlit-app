@@ -1,5 +1,3 @@
 openpyxl
 pandas
-gspread
 streamlit
-streamlit_gsheets
