@@ -12,9 +12,7 @@ OPERATIONS_PATH = "operations.xlsx"
 # USER CREDENTIALS
 # ----------------------------
 USER_CREDENTIALS = {
-    "user1": "pass1",
-    "user2": "pass2",
-    "user3": "pass3"
+    "user1": "pass1"
 }
 
 # ----------------------------
@@ -164,16 +162,12 @@ def user1_page():
         except Exception as e:
             st.error(f"Error reading operations file: {e}")
 
+
 def user2_page():
     st.title("User 2 Portal")
-    st.write("Welco")
+    st.write("Welcome, user2! Here's your interface.")
     st.selectbox("Select department:", ["HR", "Engineering", "Sales"])
     st.date_input("Choose date")
-
-def user3_page():
-    st.title("User 3 Page")
-    st.write("Hello user3! You have limited access.")
-    st.checkbox("Acknowledge notice")
 
 # ----------------------------
 # MAIN PAGE SWITCHER
