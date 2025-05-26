@@ -186,7 +186,7 @@ def user2_page():
             if val:
                 filtered_df = filtered_df[filtered_df[col].astype(str).str.contains(val, case=False, na=False)]
 
-        st.markdown("### 📋 Filtered Machine List")
+        # st.markdown("### 📋 Filtered Machine List")
         st.dataframe(filtered_df)
 
     except Exception as e:
