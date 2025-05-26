@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from streamlit_gsheets import GSheetsConnection
-
-
 
 # Path to the backend Excel file and operations file
 EXCEL_PATH = "pm_backend.xlsx"
