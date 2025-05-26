@@ -13,7 +13,8 @@ OPERATIONS_PATH = "operations.xlsx"
 # USER CREDENTIALS
 # ----------------------------
 USER_CREDENTIALS = {
-    "user1": "pass1"
+    "user1": "pass1",
+    "user2": "pass2"
 }
 
 # ----------------------------
