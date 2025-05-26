@@ -8,6 +8,8 @@ from streamlit_gsheets import GSheetsConnection
 # Path to the backend Excel file and operations file
 EXCEL_PATH = "pm_backend.xlsx"
 OPERATIONS_PATH = "operations.xlsx"
+GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/edit?usp=sharing"
+
 
 # ----------------------------
 # USER CREDENTIALS
@@ -164,13 +166,32 @@ def user1_page():
         except Exception as e:
             st.error(f"Error reading operations file: {e}")
 
-
 def user2_page():
-    st.title("User 2 Portal")
-    url="https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/edit?usp=sharing"
-    conn=st.experimental_connection("gsheets",type=GSheetsConnection)
-    data=conn.read(spreadsheet=url, usecols=list(range(3)))
-    st.dataframe(data)
+    st.title("📘 Master Machine List")
+
+    try:
+        df_master = pd.read_csv(GOOGLE_SHEET_URL)
+
+        st.markdown("#### 🔍 Search Filters")
+        search_values = {}
+        cols = st.columns(len(df_master.columns))
+
+        for i, col in enumerate(df_master.columns):
+            search_values[col] = cols[i].text_input(f"Search in '{col}'")
+
+        # Apply search filters
+        filtered_df = df_master.copy()
+        for col, val in search_values.items():
+            if val:
+                filtered_df = filtered_df[filtered_df[col].astype(str).str.contains(val, case=False, na=False)]
+
+        st.markdown("### 📋 Filtered Machine List")
+        st.dataframe(filtered_df)
+
+    except Exception as e:
+        st.error(f"Error loading machine list from Google Sheet: {e}")
+
+
     
 # ----------------------------
 # MAIN PAGE SWITCHER
@@ -181,7 +202,7 @@ def main_page():
     if st.sidebar.button("Logout"):
         st.session_state.logged_in = False
         st.session_state.username = ""
-        st.experimental_rerun()
+        st.experimental_rerun()   
 
     # Show different page based on user
     if st.session_state.username == "user1":
