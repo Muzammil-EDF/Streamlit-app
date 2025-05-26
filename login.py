@@ -5,8 +5,8 @@ from datetime import datetime
 
 
 # Path to the backend Excel file and operations file
-EXCEL_PATH = r'C:\Users\obeya.ytm7\Desktop\APP\pm_backend.xlsx'
-OPERATIONS_PATH = r'C:\Users\obeya.ytm7\Desktop\APP\operations.xlsx'
+EXCEL_PATH = "pm_backend.xlsx"
+OPERATIONS_PATH = "operations.xlsx"
 
 # ----------------------------
 # USER CREDENTIALS
