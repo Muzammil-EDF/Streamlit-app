@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+from streamlit_gsheets import GSheetsConnection
 
 
 
@@ -165,10 +166,11 @@ def user1_page():
 
 def user2_page():
     st.title("User 2 Portal")
-    st.write("Welcome, user2! Here's your interface.")
-    st.selectbox("Select department:", ["HR", "Engineering", "Sales"])
-    st.date_input("Choose date")
-
+    url= "https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/edit?gid=0#gid=0"
+    conn=st.experimental_connection("gsheets",type=GSheetsConnection)
+    data=conn.read(spreadsheet=url, usecols=list(range(3)))
+    st.dataframe(data)
+    
 # ----------------------------
 # MAIN PAGE SWITCHER
 # ----------------------------
