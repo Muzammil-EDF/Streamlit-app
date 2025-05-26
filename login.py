@@ -167,7 +167,7 @@ def user1_page():
 
 def user2_page():
     st.title("User 2 Portal")
-    url= "https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/edit?gid=0#gid=0"
+    url="https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/edit?usp=sharing"
     conn=st.experimental_connection("gsheets",type=GSheetsConnection)
     data=conn.read(spreadsheet=url, usecols=list(range(3)))
     st.dataframe(data)
