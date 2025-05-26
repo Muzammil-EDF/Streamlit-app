@@ -167,7 +167,11 @@ def user2_page():
     st.title("📘 Master Machine List")
 
     try:
-        df_master = pd.read_csv(GOOGLE_SHEET_URL)
+        # df_master = pd.read_csv(GOOGLE_SHEET_URL)
+        # Convert Google Sheet link to CSV export link
+        csv_url = "https://docs.google.com/spreadsheets/d/11WppySSOEDKbcAAtqJjvnfU8vxcuQJPh5ZcTv_9e2I4/export?format=csv"
+        df_master = pd.read_csv(csv_url)
+
 
         st.markdown("#### 🔍 Search Filters")
         search_values = {}
