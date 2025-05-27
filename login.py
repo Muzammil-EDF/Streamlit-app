@@ -3,6 +3,7 @@ import streamlit as st
 st.set_page_config(page_title="Preventive Maintenance App", layout="centered")
 
 st.title("🛠️ Preventive Maintenance System")
+st.sidebar.success("select page above")
 st.markdown("""
 Welcome to the **Preventive Maintenance System**.
 
