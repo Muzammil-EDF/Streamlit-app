@@ -2,6 +2,10 @@
 import streamlit as st
 from utils.auth import login
 
+
+st.set_page_config(page_title="multipage app", page_icon="🚪")
+
+st.sidebar.success("select pages")
 # ----------------------------
 # SESSION STATE INIT
 # ----------------------------
